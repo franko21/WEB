@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Formulario de Licencias y Permisos</title>
+</head>
+<body>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td,th{
+            border:  1px solid;
+        }
+    </style>
+    <script>
+        function verficarCampos(){
+            var aux=document.getElementById('nombre');
+            var aux1=document.getElementById('cedula');
+            var nombre=/^[a-zA-ZÀ-ÿ\s]{1,40}$/;
+            var cedula=/^[0-9]{10}$/;
+            if(!nombre.test(aux.value)){
+                alert("EL NOMBRE NO ESTA BIEN ESCRITO"+ document.getElementById('provincia').options[document.getElementById('provincia').selectedIndex].value+
+                "\n"+date);
+                aux.value="";
+                return;
+            }
+            if(!cedula.test(aux1.value)){   
+                alert("LA CEDULA ESTA MAL ESCRITA");
+                aux1.value="";
+                return;
+            }
+            if(!document.querySelector('input[name="motivo"]:checked')) {
+                alert('DEBES DE SELECCIONAR EL MOTIVO');
+                hasError = true;
+            }
+            if(document.getElementById('justificacion').value<1){
+                alert("DEBE DE DAR UNA JUSTIFICACION");
+            }
+            if(isNaN(Date.parse(document.getElementById('desde').value))){
+                alert("DEBE DE INGRESAR LA FECHA DEL PERMISO");
+            }
+            if(isNaN(Date.parse(document.getElementById('hasta').value))){
+                alert("DEBE DE INGRESAR LA FECHA DEL PERMISO");
+            }
+            if(document.querySelector('input[name="hora1"]').value==""){
+                alert("DEBE DE INGRESAR LA HORA DEL PERMISO");
+            }
+            if(document.querySelector('input[name="hora2"]').value==""){
+                alert("DEBE DE INGRESAR LA HORA DEL PERMISO");
+            }
+            alert("Fecha de Solicitud: "+date+"\n");
+        }
+        function verficarPermiso(){
+            if(document.getElementById('LCD').checked){
+                document.getElementById('tipoP').innerHTML="LICENCIA POR CALIMIDAD DOMESTICA";
+            }else if(document.getElementById('PPR').checked){
+                document.getElementById('tipoP').innerHTML="PERMISO PARA ESTUDIOS REGULARES";
+            }
+            else if(document.getElementById('LPE').checked){
+                document.getElementById('tipoP').innerHTML="LICENCIA POR ENFERMEDAD";
+            }
+            if(document.getElementById('PCV').checked){
+                document.getElementById('tipoP').innerHTML="PERMISO DE DIAS CON CARGO A VACACIONES";
+            }
+            if(document.getElementById('LPM').checked){
+                document.getElementById('tipoP').innerHTML="LICENCIA POR MATERNIDAD	";
+            }
+            if(document.getElementById('PAO').checked){
+                document.getElementById('tipoP').innerHTML="PERMISO POR ASUNTOS OFICIALES";
+            }
+            if(document.getElementById('LPMU').checked){
+                document.getElementById('tipoP').innerHTML="LICENCIA POR MATRIMONIO O UNION DE HECHO";
+            }
+            if(document.getElementById('PAM').checked){
+                document.getElementById('tipoP').innerHTML="PERMISO PARA ATENCION MEDICA";
+            }
+            if(document.getElementById('LPP').checked){
+                document.getElementById('tipoP').innerHTML="LICENCIA POR PATERNIDAD";
+            }
+            if(document.getElementById('OT').checked){
+                document.getElementById('tipoP').innerHTML="OTROS";
+            }
+        }
+    </script>
+    <form name="form1">
+        <table class="default">
+            <tr>
+                <th colspan="24"><img src="imgHeader.png" alt=""></th>
+            </tr>
+            <tr>
+                <th colspan="24">DIRECCION DE TALENTO HUMANO <br>FORMULARIO DE LICENCIAS Y PERMISOS</th>
+            </tr>
+            <tr>
+                <th colspan="3">FECHA</th>
+                <td colspan="5" ><div id="fecha">
+                    <script>
+                        date = new Date().toLocaleDateString();
+                        document.write(date);
+                    </script>
+                </div></td>
+                <th colspan="2">PROVINCIA</th>
+                <td colspan="5"><select name="provincia" id="provincia">
+                    <option value="AZUAY">AZUAY</option>
+                    <option value="BOLIVAR">BOLIVAR</option>
+                    <option value="CAÑAR">CAÑAR</option>
+                    <option value="CARCHI">CARCHI</option>
+                    <option value="CHIMBORAZO">CHIMBORAZO</option>
+                    <option value="COTOPAXI">COTOPAXI</option>
+                    <option value="EL ORO">EL ORO</option>
+                    <option value="ESMERALDAS">ESMERALDAS</option>
+                    <option value="GALAPAGOS">GALAPAGOS</option>
+                    <option value="ESMERALDAS">GUAYAS</option>
+                    <option value="IMBABURA">IMBABURA</option>
+                    <option value="LOJA">LOJA</option>
+                    <option value="LOS RIOS">LOS RIOS</option>
+                    <option value="MORONA SANTIAGO">MORONA SANTIAGO</option>
+                    <option value="NAPO">NAPO</option>
+                    <option value="ORELLANA">ORELLANA</option>
+                    <option value="PASTAZA">PASTAZA</option>
+                    <option value="PICHINCHA">PICHINCHA</option>
+                    <option value="SANTA ELENA">SANTA ELENA</option>
+                    <option value="SANTO DOMINGO">SANTO DOMINGO</option>
+                    <option value="SUCUMBIOS">SUCUMBIOS</option>
+                    <option value="TUNGURAHUA">TUNGURAHUA</option>
+                    <option value="ZAMORA CHINCHIPE">ZAMORA CHINCHIPE</option>
+                  </select></td>
+                <th colspan="5">REGIMEN</th>
+                <td colspan="4">LOSEP</td>
+            </tr>
+            <tr>
+                <th colspan="24">DATOS DEL SERVIDOR/TRABAJADOR</th>
+            </tr>
+            <tr>
+                <th colspan="5">APELLIDOS Y NOMBRES:</th>
+                <td colspan="10"><input type="text" name="nombre" id="nombre" 
+                     size="52" required>
+              </td>
+                <th colspan="5">CEDULA DE CIUDADANIA</th>
+                <td colspan="4"><input type="text" pattern="[0-9]{10}"  
+                    title="Escriba su Cedula" name="cedula" id="cedula" 
+                    size="25" required></td>
+            </tr>
+            <tr>
+                <td colspan="15">COORDINACION ZONAL 6</td>
+                <td colspan="9"><select name="instituto" id="instituto">
+                    <option value="ISTA">INSTITUTO SUPERIOR TECNOLOGICO DEL AZUAY</option>
+                    <option value="UCE">UNIVERSIDAD DE CUENCA</option>
+                    <option value="UNAE">UNIVERSIDAD NACIONAL DE EDUCACION</option>
+                  </select></td>
+            </tr>
+            <tr>
+                <th colspan="15">MOTIVO</th>
+                <th colspan="9">FECHA DEL PERMISO</th>
+            </tr>
+            <tr>
+                <td><input type="radio" id="LCD" name="motivo" value="LCD" onclick="verficarPermiso()"/></td>
+                <td colspan="7">LICENCIA POR CALAMIDAD DOMESTICA</td>
+                <td><input type="radio" id="PPR" name="motivo" value="PPR" onclick="verficarPermiso()" /></td>
+                <td colspan="6">PERMISO PARA ESTUDIOS REGULARES</td>
+                <td colspan="5">DESDE(aaaa-mm-dd)</td>
+                <td colspan="4">HASTA(aaaa-mm-dd)</td>
+            </tr>
+            <tr>
+                <td><input type="radio" id="LPE" name="motivo" value="LPE" onclick="verficarPermiso()"/></td>
+                <td colspan="7">LICENCIA POR ENFERMEDAD</td>
+                <td><input type="radio" id="PCV" name="motivo" value="PCV" onclick="verficarPermiso()"/></td>
+                <td colspan="6">PERMISO DE DIAS CON CARGO A VACACIONES</td>
+                <td colspan="5"><input type="date" id="desde" name="fechaPermiso"
+                     value=date min=date max="2030-12-31" /></td>
+                <td colspan="4"><input type="date" id="hasta" name="fechaPermiso"
+                    value=date min=date max="2030-12-31" /></td>
+            </tr>
+            <tr>
+                <td><input type="radio" id="LPM" name="motivo" value="LPM" onclick="verficarPermiso()"/></td>
+                <td colspan="7">LICENCIA POR MATERNIDAD</td>
+                <td><input type="radio" id="PAO" name="motivo" value="PAO" onclick="verficarPermiso()"/></td>
+                <td colspan="6">PERMISO POR ASUNTOS OFICIALES</td>
+                <th colspan="9">EN CASO DE HORAS</th>
+            </tr>
+            <tr>
+                <td><input type="radio" id="LPMU" name="motivo" value="LPMU" onclick="verficarPermiso()"/></td>
+                <td colspan="7">LICENCIA POR MATRIMONIO O UNION DE HECHO</td>
+                <td><input type="radio" id="PAM" name="motivo" value="PAM" onclick="verficarPermiso()"/></td>
+                <td colspan="6">PERMISO PARA ATENCION MEDICA</td>
+                <td colspan="5">DESDE(hh:mm)</td>
+                <td colspan="4">HASTA(hh:mm)</td>
+            </tr>
+            <tr>
+                <td><input type="radio" id="LPP" name="motivo" value="LPP" onclick="verficarPermiso()"/></td>
+                <td colspan="7">LICENCIA POR PATERNIDAD</td>
+                <td><input type="radio" id="OT" name="motivo" value="OT" onclick="verficarPermiso()"/></td>
+                <td colspan="6">OTROS</td>
+                <td colspan="5"><input type="time" name="hora1"></td>
+                <td colspan="4"><input type="time" name="hora2"></td>
+            </tr>
+            <tr>
+                <th colspan="15">OBSERVACIONES O JUSTIFICATIVOS</th>
+                <th colspan="9">VALOR A DESCONTAR <br>DIAS    HORAS</th>
+            </tr>
+            <tr>
+                <th colspan="15" rowspan="3"><input type="textarea" 
+                    title="Escriba una observacion o justificacion" name="justificacion" id="justificacion" 
+                    rows="3" cols="10" required></th>
+                <td colspan="5"><br></td>
+                <td colspan="4"><br></td>
+            </tr>
+            <tr>
+                <td colspan="9">DIAS SOLICITADOS /0 VALOR A DESCONTAR EL TIEMPO SOLICITADO SE MULTIPLICA POR 1.3636</td>
+            </tr>
+            <tr>
+                <td colspan="9">Tomar en cuenta que los dias de vacaciones son 
+                    en un numero de 30 dias (22 laborables, 8 sabados y domingos) despues de 11 meses laborados
+                    el calculo se lo realiza multiplicando el timepo laboral solicitado por 1.36363</td>
+            </tr>
+            <tr>
+                <th colspan="7">SOLICITA</th>
+                <th colspan="8">APRUEBA</th>
+                <th colspan="9">REGISTRA</th>
+            </tr>
+            <tr>
+                <td colspan="7">FIRMA ELECTRONICA</td>
+                <td colspan="8">Mgtr.Miguel Yuctor</td>
+                <td colspan="9"></td>
+            </tr>
+            <tr>
+                <td colspan="7">Servidor/Trabajador</td>
+                <td colspan="8">Jefe Inmediato</td>
+                <td colspan="9">Talento Humano</td>
+            </tr>
+            <tr>
+                <th colspan="6">TIPO DE PERMISO</th>
+                <th colspan="18">DESCRIPCION</th>
+            </tr>
+            <tr>
+                <td colspan="6"><div id="tipoP"></div></td>
+                <td colspan="18">DESCRIPCION DEL PERMISO DADO</td>
+            </tr>
+            <tr>
+                <th colspan="24">Todo formulario de permiso / licencia, debera ser presentado 
+                    a la Direccion de Talento Humano con su respectiva justificacion, maximo en los tres 
+                    dias posteriores a la emision del mismo, caso contrario el formulario sera nulo y 
+                    se descontara directamente de vacaciones
+                </th>
+            </tr>
+        </table>
+        <input type="button" value="Enviar" onclick="verficarCampos()"><input type="button" value="Borrar">
+    </form>
+</body>
+</html>
