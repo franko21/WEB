@@ -51,7 +51,14 @@
             if(document.querySelector('input[name="hora2"]').value==""){
                 alert("DEBE DE INGRESAR LA HORA DEL PERMISO");
             }
-            alert("Fecha de Solicitud: "+date+"\n");
+            alert("Fecha de Solicitud: "+date+"\nApellidos y nombres del servidor: "+document.getElementById('nombre').value
+            +"\nCedula: "+document.getElementById('cedula').value+"\nMotivo: "+document.getElementById('tipoP').innerHTML
+            +"\nObservaciones o Justificativos: "+document.getElementById('justificacion').value+"\nFecha inicio del permiso: "
+            +document.querySelector('input[name="fechaPermiso1"]').value+"\nFecha fin del permiso: "+document.querySelector('input[name="fechaPermiso2"]').value
+            +"\nCoordinacion: "+document.getElementById("coordinacion").options[document.getElementById("coordinacion").selectedIndex].value
+            +"\nDireccion o Unidad: "+document.getElementById("instituto").options[document.getElementById("instituto").selectedIndex].value
+            +"\nProvincia: "+document.getElementById("provincia").options[document.getElementById("provincia").selectedIndex].value
+            +"\nRegimen: "+document.getElementById('regimen').innerHTML);
         }
         function verficarPermiso(){
             if(document.getElementById('LCD').checked){
@@ -128,7 +135,9 @@
                     <option value="ZAMORA CHINCHIPE">ZAMORA CHINCHIPE</option>
                   </select></td>
                 <th colspan="5">REGIMEN</th>
-                <td colspan="4">LOSEP</td>
+                <td colspan="4">
+                    <div id="regimen">LOSEP</div>
+                </td>
             </tr>
             <tr>
                 <th colspan="24">DATOS DEL SERVIDOR/TRABAJADOR</th>
@@ -144,11 +153,19 @@
                     size="25" required></td>
             </tr>
             <tr>
-                <td colspan="15">COORDINACION ZONAL 6</td>
+                <td colspan="15"><select name="coordinacion" id="coordinacion">
+                    <option value="COORDINACION ZONAL 1-SENESCYT">COORDINACION ZONAL 1-SENESCYT</option>
+                    <option value="COORDINACION ZONAL 2-SENESCYT">COORDINACION ZONAL 2-SENESCYT</option>
+                    <option value="COORDINACION ZONAL 3-SENESCYT">COORDINACION ZONAL 3-SENESCYT</option>
+                    <option value="COORDINACION ZONAL 4-SENESCYT">COORDINACION ZONAL 4-SENESCYT</option>
+                    <option value="COORDINACION ZONAL 5-SENESCYT">COORDINACION ZONAL 5-SENESCYT</option>
+                    <option value="COORDINACION ZONAL 6-SENESCYT">COORDINACION ZONAL 6-SENESCYT</option>
+                    <option value="COORDINACION ZONAL 7-SENESCYT">COORDINACION ZONAL 7-SENESCYT</option>
+                  </select></td></td>
                 <td colspan="9"><select name="instituto" id="instituto">
-                    <option value="ISTA">INSTITUTO SUPERIOR TECNOLOGICO DEL AZUAY</option>
-                    <option value="UCE">UNIVERSIDAD DE CUENCA</option>
-                    <option value="UNAE">UNIVERSIDAD NACIONAL DE EDUCACION</option>
+                    <option value="INSTITUTO SUPERIOR TECNOLOGICO DEL AZUAY">INSTITUTO SUPERIOR TECNOLOGICO DEL AZUAY</option>
+                    <option value="UNIVERSIDAD DE CUENCA">UNIVERSIDAD DE CUENCA</option>
+                    <option value="UNIVERSIDAD NACIONAL DE EDUCACION">UNIVERSIDAD NACIONAL DE EDUCACION</option>
                   </select></td>
             </tr>
             <tr>
@@ -168,9 +185,9 @@
                 <td colspan="7">LICENCIA POR ENFERMEDAD</td>
                 <td><input type="radio" id="PCV" name="motivo" value="PCV" onclick="verficarPermiso()"/></td>
                 <td colspan="6">PERMISO DE DIAS CON CARGO A VACACIONES</td>
-                <td colspan="5"><input type="date" id="desde" name="fechaPermiso"
+                <td colspan="5"><input type="date" id="desde" name="fechaPermiso1"
                      value=date min=date max="2030-12-31" /></td>
-                <td colspan="4"><input type="date" id="hasta" name="fechaPermiso"
+                <td colspan="4"><input type="date" id="hasta" name="fechaPermiso2"
                     value=date min=date max="2030-12-31" /></td>
             </tr>
             <tr>
